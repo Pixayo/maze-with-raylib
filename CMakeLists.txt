@@ -4,6 +4,8 @@ project(maze)
 # Generate compile_commands.json
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+include_directories(include)
+
 # Dependencies
 set(RAYLIB_VERSION 6.0)
 find_package(raylib ${RAYLIB_VERSION} QUIET) # QUIET or REQUIRED
@@ -29,7 +31,7 @@ endif()
 add_executable(
   ${PROJECT_NAME} 
   src/main.cpp
+  src/maze.cpp
 )
 
 target_link_libraries(${PROJECT_NAME} raylib)
-
