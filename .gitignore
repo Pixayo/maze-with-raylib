@@ -1,0 +1,28 @@
+# CMake build result
+.cache/
+build/
+
+# IDE / Text Editor specific
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Executable
+*.exe
+*.out
+
+# Object files
+*.o
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Dynamic Libraries (Windows)
+*.dll
+*.so
+*.dylib
