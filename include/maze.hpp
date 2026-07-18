@@ -23,8 +23,10 @@ public:
 };
 
 void initialize_grid(Cell grid[HEIGHT][WIDTH]);
-void draw_maze(Cell grid[HEIGHT][WIDTH]);
 bool isMazeBorder(Cell cell);
+void draw_maze(Cell grid[HEIGHT][WIDTH]);
+void draw_cell(Cell& cell);
+void draw_cell_inspector(Cell grid[HEIGHT][WIDTH]);
 
 #endif
 

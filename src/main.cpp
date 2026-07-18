@@ -16,7 +16,9 @@ int main()
         BeginDrawing();
 
         ClearBackground(BLACK);
+
         draw_maze(grid);
+        draw_cell_inspector(grid);
 
         EndDrawing();
     }
