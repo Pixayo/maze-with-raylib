@@ -3,6 +3,8 @@
 #define MAZE_HPP
 
 #include "raylib.h"
+#include "raygui.h"
+#include "raymath.h"
 
 #define HEIGHT    30
 #define WIDTH     30
@@ -22,11 +24,14 @@ public:
     Cell(int x, int y) : x(x), y(y) {}
 };
 
+// Update
 void initialize_grid(Cell grid[HEIGHT][WIDTH]);
-bool isMazeBorder(Cell cell);
+// Draw
 void draw_maze(Cell grid[HEIGHT][WIDTH]);
 void draw_cell(Cell& cell);
 void draw_cell_inspector(Cell grid[HEIGHT][WIDTH]);
+// Util
+bool isMazeBorder(Cell cell);
 
 #endif
 

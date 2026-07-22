@@ -1,3 +1,4 @@
+#define RAYGUI_IMPLEMENTATION
 #include "maze.hpp"
 
 int main()

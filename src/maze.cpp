@@ -15,11 +15,6 @@ void initialize_grid(Cell grid[HEIGHT][WIDTH])
     }
 }
 
-bool isMazeBorder(Cell cell)
-{
-    return ((cell.x == 0 || cell.x == HEIGHT - 1) || (cell.y == 0 || cell.y == WIDTH - 1));
-}
-
 void draw_maze(Cell grid[HEIGHT][WIDTH])
 {
     for(int i = 0; i < HEIGHT; i++) 
@@ -69,7 +64,7 @@ void draw_cell(Cell& cell)
 
 void draw_cell_inspector(Cell grid[HEIGHT][WIDTH])
 {
-int mouseX = GetMouseX();
+    int mouseX = GetMouseX();
     int mouseY = GetMouseY();
 
     int hoverI = (mouseX - MARGIN) / CELL_SIZE;
@@ -82,61 +77,32 @@ int mouseX = GetMouseX();
     {
         Cell cell = grid[hoverI][hoverJ];
 
-        int menuWidth = 140;
-        int menuHeight = 75;
-        
-        // 1. Posição ideal do menu com um deslocamento em relação ao cursor
-        int menuX = mouseX + 5;
-        int menuY = mouseY + 5;
+        float menuWidth = 140.0f;
+        float menuHeight = 85.0f;
+        const float padding = 10.0f; 
 
-        // 2. Define a zona interna de restrição (distância mínima dos limites da janela)
-        const int padding = 10; 
+        // Restringe o inspector aos limites da janela (substitui os vários 'if' manuais)
+        float menuX = Clamp((float)mouseX + 10, padding, GetScreenWidth() - menuWidth - padding);
+        float menuY = Clamp((float)mouseY + 10, padding, GetScreenHeight() - menuHeight - padding);
 
-        // 3. Restringe o eixo X dentro do limite esquerdo e direito da zona interna
-        if (menuX < padding) 
-        {
-            menuX = padding;
-        }
-        else if (menuX + menuWidth > GetScreenWidth() - padding) 
-        {
-            menuX = GetScreenWidth() - menuWidth - padding;
-        }
+        Rectangle bounds = { menuX, menuY, menuWidth, menuHeight };
 
-        // 4. Restringe o eixo Y dentro do limite superior e inferior da zona interna
-        if (menuY < padding) 
-        {
-            menuY = padding;
-        }
-        else if (menuY + menuHeight > GetScreenHeight() - padding) 
-        {
-            menuY = GetScreenHeight() - menuHeight - padding;
-        }
+        // 1. Desenha o painel container (fundo, borda e cabeçalho estilizados pelo Raygui)
+        GuiPanel(bounds, "Cell Info");
 
-        // Renderização do menu (Fundo e Textos)
-        DrawRectangle(menuX, menuY, menuWidth, menuHeight, CLITERAL(Color){ 20, 20, 20, 230 });
-        DrawRectangleLines(menuX, menuY, menuWidth, menuHeight, RAYWHITE);
+        // 2. Renderiza as informações da célula utilizando GuiLabel
+        GuiLabel((Rectangle){ menuX + 10, menuY + 25, menuWidth - 20, 15 }, 
+                 TextFormat("Pos: {%d, %d}", cell.x, cell.y));
 
-        int textOffset = 8;
-        int fontSize = 14;
+        GuiLabel((Rectangle){ menuX + 10, menuY + 42, menuWidth - 20, 15 }, 
+                 TextFormat("Wall: %s", cell.isWall ? "true" : "false"));
 
-        DrawText(
-            TextFormat("{%d, %d}", cell.x, cell.y), 
-            menuX + 10, 
-            menuY + textOffset, 
-            fontSize, 
-            LIGHTGRAY
-        );
-        
-        Color wallColor = cell.isWall ? RED : GREEN;
-        DrawText(
-            TextFormat("Wall: %s", cell.isWall ? "true" : "false"), 
-            menuX + 10, 
-            menuY + textOffset + 20, 
-            fontSize, 
-            wallColor
-        );
-        
-        Color visitedColor = cell.wasVisited ? GOLD : LIGHTGRAY;
-        DrawText(TextFormat("Visited: %s", cell.wasVisited ? "true" : "false"), menuX + 10, menuY + textOffset + 40, fontSize, visitedColor);
+        GuiLabel((Rectangle){ menuX + 10, menuY + 59, menuWidth - 20, 15 }, 
+                 TextFormat("Visited: %s", cell.wasVisited ? "true" : "false"));
     }
+}
+
+bool isMazeBorder(Cell cell)
+{
+    return ((cell.x == 0 || cell.x == HEIGHT - 1) || (cell.y == 0 || cell.y == WIDTH - 1));
 }

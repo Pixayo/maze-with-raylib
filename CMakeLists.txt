@@ -1,37 +1,41 @@
-cmake_minimum_required(VERSION 3.11) # FetchContent is available in 3.11+
+# FetchContent is available in 3.11+
+# FetchContent at version 3.14 checks for local copies of dependent libraries
+
+cmake_minimum_required(VERSION 3.14)
 project(maze)
 
-# Generate compile_commands.json
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+include(FetchContent)
 
 include_directories(include)
 
-# Dependencies
+# ---------------------------------------------------------------------
+# Dependency: Raylib 
 set(RAYLIB_VERSION 6.0)
-find_package(raylib ${RAYLIB_VERSION} QUIET) # QUIET or REQUIRED
-if (NOT raylib_FOUND) # If there's none, fetch and build raylib
+find_package(raylib ${RAYLIB_VERSION} QUIET)
 
-  include(FetchContent)
+if (NOT raylib_FOUND)
   FetchContent_Declare(
     raylib
     DOWNLOAD_EXTRACT_TIMESTAMP OFF
     URL https://github.com/raysan5/raylib/archive/refs/tags/${RAYLIB_VERSION}.tar.gz
   )
-
-  FetchContent_GetProperties(raylib)
-  if (NOT raylib_POPULATED) # Have we downloaded raylib yet?
-    set(FETCHCONTENT_QUIET NO)
-    FetchContent_MakeAvailable(raylib)
-  endif()
-
+  FetchContent_MakeAvailable(raylib) # can check if locally available.
 endif()
 
-# Our Project
+# Dependency: Raygui 
+FetchContent_Declare(
+  raygui
+  URL https://github.com/raysan5/raygui/archive/refs/tags/4.0.tar.gz
+)
+FetchContent_MakeAvailable(raygui)
+# ---------------------------------------------------------------------
 
+# Executable configuration
 add_executable(
-  ${PROJECT_NAME} 
+  ${PROJECT_NAME}
   src/main.cpp
   src/maze.cpp
 )
-
-target_link_libraries(${PROJECT_NAME} raylib)
+target_link_libraries(${PROJECT_NAME} PRIVATE raylib)
+target_include_directories(${PROJECT_NAME} PRIVATE ${raygui_SOURCE_DIR}/src)
