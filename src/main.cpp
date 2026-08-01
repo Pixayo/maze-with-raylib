@@ -1,9 +1,6 @@
-#include "generator.hpp"
-#include "grid.hpp"
-#include "raylib.h"
-#define RAYGUI_IMPLEMENTATION
-
 #include "maze.hpp"
+
+#define RAYGUI_IMPLEMENTATION
 
 int main()
 {
