@@ -4,10 +4,13 @@
 cmake_minimum_required(VERSION 3.14)
 project(maze)
 
+# Default build type to "Release"
+if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
+  set(CMAKE_BUILD_TYPE Release CACHE STRING "Choose the type of build" FORCE)
+endif()
+
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 include(FetchContent)
-
-include_directories(include)
 
 # External libraries:
 # -- Raylib ---------------------------------------------------
@@ -24,9 +27,11 @@ if (NOT raylib_FOUND)
 endif()
 
 # -- Raygui ---------------------------------------------------
+set(RAYGUI_VERSION 4.0)
 FetchContent_Declare(
   raygui
-  URL https://github.com/raysan5/raygui/archive/refs/tags/4.0.tar.gz
+  DOWNLOAD_EXTRACT_TIMESTAMP OFF
+  URL https://github.com/raysan5/raygui/archive/refs/tags/${RAYGUI_VERSION}.tar.gz
 )
 FetchContent_MakeAvailable(raygui)
 # ---------------------------------------------------------------
@@ -40,4 +45,8 @@ add_executable(
   src/renderer.cpp
 )
 target_link_libraries(${PROJECT_NAME} PRIVATE raylib)
-target_include_directories(${PROJECT_NAME} PRIVATE ${raygui_SOURCE_DIR}/src)
+target_include_directories(
+  ${PROJECT_NAME} PRIVATE 
+  ${raygui_SOURCE_DIR}/src
+  include
+)
