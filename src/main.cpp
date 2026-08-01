@@ -7,10 +7,12 @@
 
 int main()
 {
-    const int screenWidth = WIDTH * CELL_SIZE + (2 * MARGIN);
-    const int screenHeight = HEIGHT * CELL_SIZE + (2 * MARGIN);
+    const int screenWidth  = (WIDTH * CELL_SIZE) + (2 * MARGIN);
+    const int screenHeight = (HEIGHT * CELL_SIZE) + (2 * MARGIN);
     
-    InitWindow(screenWidth, screenHeight, "maze-with-raylib");
+    // NOTE: Height and Width are inverted here
+    InitWindow(screenHeight, screenWidth, "maze-with-raylib");
+    
     SetTargetFPS(60);
 
     Cell grid[HEIGHT][WIDTH];
