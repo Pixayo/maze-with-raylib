@@ -1,11 +1,11 @@
-#include "maze.hpp"
-
 #define RAYGUI_IMPLEMENTATION
+
+#include "maze.hpp"
 
 int main()
 {
-    const int screenWidth  = (WIDTH * CELL_SIZE) + (2 * MARGIN);
     const int screenHeight = (HEIGHT * CELL_SIZE) + (2 * MARGIN);
+    const int screenWidth  = (WIDTH * CELL_SIZE) + (2 * MARGIN);
     
     // NOTE: Height and Width are inverted here
     InitWindow(screenHeight, screenWidth, "maze-with-raylib");
