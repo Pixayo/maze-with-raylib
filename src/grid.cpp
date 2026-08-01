@@ -8,7 +8,7 @@ void initialize_grid(Cell grid[HEIGHT][WIDTH])
         {
             Cell cell = Cell(i, j);
 
-            cell.isWall = isMazeBorder(cell);
+            // cell.isWall = isMazeBorder(cell);
 
             grid[i][j] = cell;
         }

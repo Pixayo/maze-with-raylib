@@ -1,3 +1,6 @@
+#include "generator.hpp"
+#include "grid.hpp"
+#include "raylib.h"
 #define RAYGUI_IMPLEMENTATION
 
 #include "maze.hpp"
@@ -15,12 +18,16 @@ int main()
 
     while (!WindowShouldClose()) 
     {
+        if (IsKeyPressed(KEY_R)) 
+        {
+            generate_maze_dfs(grid, 1, 1);
+        }
+        
         BeginDrawing();
 
-        ClearBackground(BLACK);
-
-        draw_maze(grid);
-        draw_cell_inspector(grid);
+            ClearBackground(BLACK);
+            draw_maze(grid);
+            draw_cell_inspector(grid);
 
         EndDrawing();
     }

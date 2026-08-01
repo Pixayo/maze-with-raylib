@@ -6,6 +6,7 @@
 
 #include "cell.hpp"
 #include "grid.hpp"
+#include "generator.hpp"
 #include "renderer.hpp"
 
 #endif // MAZE_HPP
