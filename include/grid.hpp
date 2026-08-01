@@ -3,10 +3,10 @@
 
 #include "cell.hpp"
 
-const int HEIGHT = 30;
-const int WIDTH  = 30;
+const int HEIGHT = 31;
+const int WIDTH  = 31;
 
 void initialize_grid(Cell grid[HEIGHT][WIDTH]);
 bool isMazeBorder(Cell cell);
 
-#endif
+#endif // GRID_HPP

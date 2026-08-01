@@ -14,4 +14,4 @@ void draw_cell(Cell& cell);
 void draw_cell_inspector(Cell grid[HEIGHT][WIDTH]);
 void draw_maze(Cell grid[HEIGHT][WIDTH]);
 
-#endif
+#endif // RENDERER_HPP

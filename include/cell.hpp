@@ -1,8 +1,6 @@
 #ifndef CELL_HPP
 #define CELL_HPP
 
-// TODO: use vector2 instead of int variables
-
 class Cell 
 {
 public:
@@ -15,4 +13,4 @@ public:
     Cell(int x, int y) : x(x), y(y) {};
 };
 
-#endif
+#endif // CELL_HPP

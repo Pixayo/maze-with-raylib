@@ -8,5 +8,5 @@
 #include "grid.hpp"
 #include "renderer.hpp"
 
-#endif
+#endif // MAZE_HPP
 
