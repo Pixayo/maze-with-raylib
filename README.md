@@ -4,6 +4,8 @@ Simple graphical maze generator build with C/C++ and raylib. This repository hol
 
 With this project I want to learn more about game development and evetually make my very own game.
 
+<table></table>
+
 ## Description
 
 ## Build
