@@ -11,6 +11,14 @@ Simple graphical maze generator build with C/C++ and Raylib. This repository hol
       <img alt="Demo 2" src="https://github.com/user-attachments/assets/c1b9ab3a-ae44-4d7a-bc30-7a08e8f61dda" />
     </td>
   </tr>
+  <tr>
+    <td align="center">
+      <img width="854" height="730" alt="Demo 3" src="https://github.com/user-attachments/assets/99d65b39-e246-4849-8205-ce46bba489f8" />
+    </td>
+    <td align="center">    
+      <img width="854" height="730" alt="Demo 4" src="https://github.com/user-attachments/assets/304eabb2-ef5b-4aea-934d-ac3e8d023ff1" />
+    </td>
+  </tr>
 </table>
 
 ## Description
