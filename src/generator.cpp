@@ -1,5 +1,5 @@
+#include "raylib.h" // GetRandomValue()
 #include "generator.hpp"
-#include "raylib.h"
 
 static void shuffle_directions(int dirs[4][2]) {
     for (int i = 3; i > 0; i--)
@@ -49,6 +49,14 @@ static void dfs_step(Cell grid[HEIGHT][WIDTH], int currentX, int currentY) {
     }
 }
 
+void set_entrance_and_exit(Cell grid[HEIGHT][WIDTH]) {
+    grid[0][1].isWall = false;
+    grid[0][1].type = START;
+
+    grid[HEIGHT - 1][WIDTH - 2].isWall = false;
+    grid[HEIGHT - 1][WIDTH - 2].type = END;
+}
+
 void generate_maze_dfs(Cell grid[HEIGHT][WIDTH], int startX, int startY)
 {
     for (int y = 0; y < HEIGHT; y++) 
@@ -59,6 +67,8 @@ void generate_maze_dfs(Cell grid[HEIGHT][WIDTH], int startX, int startY)
             grid[y][x].wasVisited = false;
         }
     }
+    
+    set_entrance_and_exit(grid);
 
     if (startX % 2 == 0) startX++;
     if (startY % 2 == 0) startY++;

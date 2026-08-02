@@ -1,6 +1,10 @@
 #ifndef CELL_HPP
 #define CELL_HPP
 
+enum CellType {
+    PATH, WALL, START, END
+};
+
 class Cell 
 {
 public:
@@ -8,6 +12,7 @@ public:
     int y;
     bool isWall = false;
     bool wasVisited = false; 
+    CellType type;
 
     Cell() {};
     Cell(int x, int y) : x(x), y(y) {};

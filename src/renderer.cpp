@@ -1,4 +1,5 @@
 #include "renderer.hpp"
+#include "raylib.h"
 
 void draw_maze(Cell grid[HEIGHT][WIDTH])
 {
@@ -29,6 +30,16 @@ void draw_cell(Cell& cell)
     {
         inside = GREEN;
         outside = GREEN;
+    } 
+    else if (cell.type == START) 
+    {
+        inside = YELLOW;
+        outside = WHITE;
+    }
+    else if (cell.type == END)
+    {
+        inside = RED;
+        outside = WHITE;
     }
 
     DrawRectangle(
