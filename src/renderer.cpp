@@ -1,5 +1,4 @@
 #include "renderer.hpp"
-#include "raylib.h"
 
 void draw_maze(Cell grid[HEIGHT][WIDTH])
 {
@@ -10,6 +9,19 @@ void draw_maze(Cell grid[HEIGHT][WIDTH])
             draw_cell(grid[i][j]);
         }
     }
+}
+
+void draw_instructions() 
+{
+    const char* text = "S = solve / R = reload";
+    int fontSize = 20;
+
+    int textWidth = MeasureText(text, fontSize);
+
+    int posX = (GetScreenWidth() - textWidth) / 2;
+    int posY = MARGIN / 2;
+
+    DrawText(text, posX, posY, fontSize, RAYWHITE);
 }
 
 void draw_cell(Cell& cell) 
@@ -29,17 +41,19 @@ void draw_cell(Cell& cell)
     if((cell.x == hoverX && cell.y == hoverY) && (hoverX < MARGIN && hoverY < MARGIN))
     {
         inside = GREEN;
-        outside = GREEN;
+        outside = WHITE;
     } 
     else if (cell.type == START) 
     {
         inside = YELLOW;
-        outside = WHITE;
     }
     else if (cell.type == END)
     {
         inside = RED;
-        outside = WHITE;
+    }
+    else if (cell.inPath == true)
+    {
+        inside = DARKGREEN;
     }
 
     DrawRectangle(
@@ -94,6 +108,6 @@ void draw_cell_inspector(Cell grid[HEIGHT][WIDTH])
                  TextFormat("Wall: %s", cell.isWall ? "true" : "false"));
 
         GuiLabel((Rectangle){ menuX + 10, menuY + 59, menuWidth - 20, 15 }, 
-                 TextFormat("Visited: %s", cell.wasVisited ? "true" : "false"));
+                 TextFormat("InPath: %s", cell.inPath ? "true" : "false"));
     }
 }

@@ -8,9 +8,18 @@ void initialize_grid(Cell grid[HEIGHT][WIDTH])
         {
             Cell cell = Cell(i, j);
 
-            // cell.isWall = isMazeBorder(cell);
-
             grid[i][j] = cell;
+        }
+    }
+}
+
+void restart_grid(Cell grid[HEIGHT][WIDTH])
+{
+    for(int i = 0; i < HEIGHT; i++) 
+    {
+        for(int j = 0; j < WIDTH; j++)
+        {
+            grid[i][j].restart(i, j);
         }
     }
 }

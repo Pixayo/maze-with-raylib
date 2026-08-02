@@ -14,17 +14,27 @@ int main()
 
     Cell grid[HEIGHT][WIDTH];
     initialize_grid(grid);
+    generate_maze_dfs(grid, 1, 1);
+
+    Point start = {1, 0};
+    Point end   = {WIDTH - 2, HEIGHT - 1};
 
     while (!WindowShouldClose()) 
     {
         if (IsKeyPressed(KEY_R)) 
         {
+            restart_grid(grid);
             generate_maze_dfs(grid, 1, 1);
+        }
+        if (IsKeyPressed(KEY_S))
+        {
+            solve_maze_bfs(grid, start, end);
         }
         
         BeginDrawing();
 
             ClearBackground(BLACK);
+            draw_instructions();
             draw_maze(grid);
             draw_cell_inspector(grid);
 

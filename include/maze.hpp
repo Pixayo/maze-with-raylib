@@ -8,6 +8,7 @@
 #include "grid.hpp"
 #include "generator.hpp"
 #include "renderer.hpp"
+#include "solver.hpp"
 
 #endif // MAZE_HPP
 

@@ -11,6 +11,7 @@ const int CELL_SIZE = 16;
 const int MARGIN    = (CELL_SIZE * 3);
 
 void draw_cell(Cell& cell);
+void draw_instructions();
 void draw_cell_inspector(Cell grid[HEIGHT][WIDTH]);
 void draw_maze(Cell grid[HEIGHT][WIDTH]);
 

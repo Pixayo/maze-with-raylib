@@ -7,6 +7,7 @@ const int HEIGHT = 41;
 const int WIDTH  = 31;
 
 void initialize_grid(Cell grid[HEIGHT][WIDTH]);
+void restart_grid(Cell grid[HEIGHT][WIDTH]);
 bool isMazeBorder(Cell cell);
 
 #endif // GRID_HPP

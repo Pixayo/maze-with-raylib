@@ -43,6 +43,7 @@ add_executable(
   src/grid.cpp
   src/generator.cpp
   src/renderer.cpp
+  src/solver.cpp
 )
 target_link_libraries(${PROJECT_NAME} PRIVATE raylib)
 target_include_directories(
