@@ -15,10 +15,6 @@ Graphical maze generator built with C/C++ and Raylib. This repository holds my f
 
 #### Video demo: `TODO`
 
-## Details
-
-
-
 ## Thoughts
 
 In this section I talk about why I made this project and what my objective was. It's a more casual way of explaining everything I did. If you want a more technical approach, read the `Details` section instead.
@@ -36,10 +32,49 @@ I think you already know where this is going... I thought about making a maze ge
 - What about actually generating the maze and then solving it?
 - And how could I compile the program to other platforms? 
 
-I still don't know how to compile for other platforms! But I am sure I will run into the same problem when I make my game, no need to solve every single problem now...
+I still don't know how to compile for other platforms! But I am sure I will run into the same problem when I make my game, no need to solve every single problem now.
 
 And here I am today writing the README because it is the last thing to do... well, I didn't make the demo video yet... so it's the second-to-last thing.
 
+## Details
+
+
+
 ## Build
 
+Download the source code and make sure you have a `C++ compiler` and `CMake (v3.14+)` installed. Raylib and any other dependencies will be downloaded by CMake.
 
+1. Clone the repo and `cd` into the project directory:
+
+```bash
+git clone https://github.com/Pixayo/maze-with-raylib.git
+cd maze-with-raylib
+```
+
+2. Configure the build and create a build directory:
+
+```bash
+cmake -B build
+```
+
+3. Build the project:
+
+```bash
+cmake --build build
+```
+
+That's it — after a successful build you should find the maze executable in the `build` directory.
+
+4. Finally, run the executable:
+
+- On Linux/MacOS:
+
+```bash
+./build/maze
+```
+
+- On Windows (PowerShell/CMD):
+
+```powershell
+.\build\maze.exe
+```
