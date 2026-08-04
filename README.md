@@ -38,7 +38,25 @@ And here I am today writing the README because it is the last thing to do... wel
 
 ## Details
 
+Here I’ll explain what’s actually going on when you run the program.
 
+The world is a simple 2D grid: the program creates a `Cell grid[HEIGHT][WIDTH]` and every cell has a few flags and properties (coordinates, whether it’s a wall, whether it was visited, whether it’s part of the solved path, and its role as `START`/`END`). At startup we mark every cell as a `path` and clear the visited flags so the generator starts from a clean slate.
+
+Maze generation is done with a recursive DFS (a.k.a. recursive backtracker). I start from a seed cell (the code makes sure the start coordinates are odd so we land on cell-centers, not on walls), mark the current cell as visited and turn it into empty space, then try the four cardinal directions in a random order. Each step jumps two cells (so cells and walls are interleaved): when we decide to move to a neighboring cell two steps away, we knock down the wall that lies between the current cell and that neighbor (the “half-step”) and recurse into the neighbor. The random shuffling of directions gives a different maze every time. After the generation pass I set a small entrance and exit (top and bottom edges) and tag them `START` and `END`.
+
+Solving the maze uses a BFS (breadth‑first search). I push the start point into a queue, then visit reachable neighbors (only non-wall cells) while tracking a parent for each visited cell. When BFS reaches the `END cell` I walk back from the end to the start following parents and mark each cell on that route with `inPath = true`. The renderer picks that up and paints the solution path differently.
+
+Rendering and interaction use Raylib and Raygui. The main loop initializes a window, sets the target FPS, and then on every frame:
+
+- handles key presses (S to solve, R to regenerate),
+
+- clears the screen and draws the UI text,
+
+- iterates over the grid and calls `draw_cell()` for each cell,
+
+- draws a small inspector panel when the mouse hovers over a cell.
+
+Visual details: walls are gray, empty cells are black, the start cell is yellow, the end cell is red, and the discovered path shows up as dark green. When you hover a cell it highlights and a Raygui panel pops up with a few properties (`position`, `isWall`, `inPath`) so you can inspect the grid in realtime.
 
 ## Build
 
